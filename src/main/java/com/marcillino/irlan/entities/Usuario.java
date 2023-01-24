@@ -1,29 +1,34 @@
 package com.marcillino.irlan.entities;
 
-import java.io.Serial;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 
-
-public class User implements Serializable {
+@Entity
+public class Usuario implements Serializable {
     /**
      * Interface serializable permite que o objeto seja transformado em cadeia de bytes, para que o mesmo seja trafegado pela rede, gravado em arquivos e etc
      */
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String email;
     private String phone;
     private String password;
 
-    public User() {
+    public Usuario() {
     }
 
-    public User(Integer id, String name, String email, String phone, String password) {
+    public Usuario(Long id, String name, String email, String phone, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -31,11 +36,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -75,8 +80,8 @@ public class User implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(phone, user.phone) && Objects.equals(password, user.password);
+        Usuario Usuario = (Usuario) o;
+        return Objects.equals(id, Usuario.id) && Objects.equals(name, Usuario.name) && Objects.equals(email, Usuario.email) && Objects.equals(phone, Usuario.phone) && Objects.equals(password, Usuario.password);
     }
 
     @Override
