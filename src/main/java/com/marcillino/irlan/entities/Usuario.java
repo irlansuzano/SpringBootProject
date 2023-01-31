@@ -1,5 +1,6 @@
 package com.marcillino.irlan.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -25,6 +26,7 @@ public class Usuario implements Serializable {
     private String phone;
     private String password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client")                            //um usuario para mtos pedidos
     private List<Order> orders = new ArrayList<>();
 
