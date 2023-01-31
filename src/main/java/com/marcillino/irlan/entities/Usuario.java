@@ -1,15 +1,15 @@
 package com.marcillino.irlan.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
 @Entity
+@Table(name = "tb_user")
 public class Usuario implements Serializable {
     /**
      * Interface serializable permite que o objeto seja transformado em cadeia de bytes, para que o mesmo seja trafegado pela rede, gravado em arquivos e etc
@@ -24,6 +24,9 @@ public class Usuario implements Serializable {
     private String email;
     private String phone;
     private String password;
+
+    @OneToMany(mappedBy = "client")                            //um usuario para mtos pedidos
+    private List<Order> orders = new ArrayList<>();
 
     public Usuario() {
     }
@@ -74,6 +77,10 @@ public class Usuario implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     @Override
