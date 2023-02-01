@@ -21,13 +21,18 @@ public class OrderService {
 
 
     /**
-     * método responsável pelo retorno de uma lista contendo todos os usuarios cadastrados na base
+     * método responsável pelo retorno de uma lista contendo todos os pedidos cadastrados na base
      * @return List<Usuario>
      */
     public List<Order> findAll() {
         return orderRepository.findAll();
     }
 
+    /**
+     * método responsavel pelo retorno de um pedido pelo id
+     * @param id
+     * @return
+     */
     public Order findById(Long id){
         Optional<Order> order = orderRepository.findById(id);
         return order.get(); //retorna o que tiver dentro do optional
